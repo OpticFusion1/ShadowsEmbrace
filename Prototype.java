@@ -17,16 +17,17 @@ public class Prototype
 	public static void main(String[] args) 
 	{
 		
-		Prototype game = new Prototype();
-		game.playerSetup();
-		game.gameStart();
-		game.monsterFight();
+	    Prototype game = new Prototype();
+	    game.playerSetup();
+	    game.gameStart();
+	    game.monsterFight();
+	    game.bossFight();
 	}
 
 	public void playerSetup()
 	{
 	    System.out.println("------------------------------------------------"); 
-	    System.out.println("Welcome to Shadow's Embrace.");
+	    System.out.println("\nWelcome to Shadow's Embrace.");
 	    System.out.print("Your adventure begins here. Please enter a name: ");
 	    user = s.nextLine();
 	}
@@ -34,22 +35,22 @@ public class Prototype
 	public void gameStart()
 	{
 		 //START OF GAME
-	        System.out.println("------------------------------------------------"); 
-		System.out.println(user +" You are a man fighting for your love of your life! You must rescue her in order for you to successfully finish this mission!");
-		System.out.println("(Press ENTER to proceed.)");
-		s.nextLine();		
+	    System.out.println("\n------------------------------------------------"); 
+	    System.out.println(user +" You are a man fighting for your love of your life! You must rescue her in order for you to successfully finish this mission!");
+            System.out.println("(Press ENTER to proceed.)");
+	    s.nextLine();		
 		
 	}
 	
 	public void monsterFight()
 	{
-		String monster = "First Monster";
-		System.out.println(monster + " has arrived!");
-		System.out.println("What do you want to do?");
-		System.out.println("1. Attack");
-		System.out.println("2. Ignore");
-		System.out.println("3. Run");
-		playerChoice = s.nextInt();
+	    String monster = "First Monster";
+	    System.out.println(monster + " has arrived!");
+	    System.out.println("What do you want to do?");
+	    System.out.println("1. Attack");
+	    System.out.println("2. Ignore");
+	    System.out.println("3. Run");
+	    playerChoice = s.nextInt();
 		
 		if (playerChoice == 1)
 		{
@@ -68,9 +69,19 @@ public class Prototype
 					System.out.println("2. Heal");
 					System.out.println("3. Run");
 					subChoice = s.nextInt();
+					
 					if (subChoice == 1) 
 					{
 						System.out.println("You killed the monster! It's time to continue and find your love of your life.");
+						s.nextLine();
+					}
+					
+					if (subChoice == 2)
+					{
+						heal--;
+						playerHP = 100;
+						System.out.println("You have used your heal. You only have " + heal + " left");
+						s.nextLine();
 					}
 				} 
 				else
@@ -84,6 +95,7 @@ public class Prototype
 					{
 						heal--;
 						System.out.println("You used your heal your HP is now back to full. You have " + heal + " heals left");
+						s.nextLine();
 					}
 				}
 			
@@ -92,5 +104,15 @@ public class Prototype
 		
 	}
 
+	public void bossFight()
+	{
+		System.out.println("Test");
+		s.nextLine();
+	}
+	
+	public void ending()
+	{
+		
+	}
+	
 }	
-
