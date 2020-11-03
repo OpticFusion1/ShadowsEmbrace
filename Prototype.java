@@ -8,8 +8,9 @@ public class Prototype
 		//Variables
 	    Scanner s = new Scanner(System.in);
 	    Random r = new Random();
-		String monster;
+		int monsterHP = 15;
 	    int playerHP = 100;
+		int playerChoice;
 		
 		//Introduction to the game
 	    
@@ -17,18 +18,15 @@ public class Prototype
 	    System.out.println("Welcome to Shadow's Embrace");
 	    System.out.print("Please enter your name: ");
 	    String user = s.nextLine();
-	    System.out.println("Welcome  " + user + " Please press ENTER to start");
-	    
-
-	    //START OF GAME
-	    System.out.println(""); 
-	
-	
-	
-	
-	
-	
-	
-	
+	    System.out.println("Welcome  " + user + " Please press ENTER to start");   	
 	}
-}
+
+	public void gameStart()
+	{
+		 //START OF GAME
+	    System.out.println("--------------------------------------"); 
+	    System.out.println("");
+	}
+	
+
+}	
