@@ -8,9 +8,9 @@ public class Prototype
 		//Variables
 	    Scanner s = new Scanner(System.in);
 	    Random r = new Random();
-		int monsterHP = 15;
+	    int monsterHP = 15;
 	    int playerHP = 100;
-		int playerChoice;
+	    int playerChoice;
 		
 		//Introduction to the game
 	    
