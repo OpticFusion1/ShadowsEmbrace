@@ -209,6 +209,24 @@ public class ShadowsEmbrace
 		
 	}
 	
+	
+	public void firstBossFight()
+	{
+		//TO DO IF YOU HAVE ENTERED THE DUNGEON
+	}
+	
+	public void secondBossFight()
+	{
+		//TO DO IF YOU HAVE SUCCESSFULLY DEFEATED THE FIRST BOSS
+	}
+	
+	public void finalBossFight()
+	{
+		//TO DO IF YOU SUCCESSFULLY DEFEATED THE SECOND BOSS
+	}
+	
+	
+	
 	public void ending()
 	{
 		System.out.println("\n------------------------------------------------------------------\n");
