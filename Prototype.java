@@ -2,7 +2,10 @@ import java.util.Scanner;
 import java.util.Random;
 public class ShadowsEmbrace 
 {
-	
+	/*
+	AUTHORS NOTE:
+	This is only a prototype of the game not the final product/final storyline	
+	*/
 	
 	Random r = new Random();
 	Scanner s = new Scanner(System.in);
@@ -13,14 +16,14 @@ public class ShadowsEmbrace
 	int monsterHP = r.nextInt(25);
 	String monster[] = {"Skeleton", "Warrior" , "Archer"};
         int monsterRandomizer = r.nextInt(monster.length);
-	int monsterCounter = 3;
+	int monsterCounter = 2;
 	int key;
 		
 	public static void main(String[] args) 
 	{
 
- 
-		ShadowsEmbrace	game = new ShadowsEmbrace();	
+		ShadowsEmbrace game;
+		game = new ShadowsEmbrace();	
 		
 		game.playerSetUp(); 	
 		game.startUp();
@@ -32,9 +35,9 @@ public class ShadowsEmbrace
 	    System.out.println("\nWelcome to Shadow's Embrace.");
 	    System.out.print("Your adventure begins here. Please enter a name: ");
 		
-		playerName = s.nextLine();
-		System.out.println();
-		System.out.println("Hello " + playerName + ", let's start the game!");	
+	    playerName = s.nextLine();
+	    System.out.println();
+	    System.out.println("Hello " + playerName + ", let's start the game!");	
 		
 		
 	}	
@@ -97,7 +100,7 @@ public class ShadowsEmbrace
 			
 			else if (choice == 2)
 			{
-			System.out.println("You can't run!" + monster[monsterRandomizer] + " killed you");
+			    System.out.println("You can't run!" + monster[monsterRandomizer] + " killed you");
 			}
 		}
 	}
@@ -118,15 +121,19 @@ public class ShadowsEmbrace
 		
 		if(choice==1)
 		{
-			attack();
+		    attack();
 		}
 		else if(choice==2)
 		{
-			System.out.println("You can't run!" + monster[monsterRandomizer] + " killed you");
+		    System.out.println("You can't run!" + monster[monsterRandomizer] + " killed you");
 		}
 		else
 		{
-			fight();
+		    fight();
+		}
+		if (monsterHP <= 0)
+		{
+		    monsterHP = r.nextInt(25);
 		}
 	}
 	
@@ -145,29 +152,23 @@ public class ShadowsEmbrace
 		
 		if(monsterHP<1)
 		{
-			win(); 
+		    win(); 
 		} 
 		
-		else if(monsterHP>0)
+		else if(monsterHP > 0)
 		{
-			int monsterDamage =0;
+		    fight();
 			
-			monsterDamage = new java.util.Random().nextInt(4);
 			
-			System.out.println("The monster attacked you and gave " + monsterDamage + " damage!");
-			
-			playerHP = playerHP - monsterDamage;
-			
-			System.out.println("Player HP: " + playerHP);
 			
 			if(playerHP<1)
 			{ 
-				dead(); 
+			    dead(); 
 			} 
 			
 			else if(playerHP>0)
 			{
-				fight();
+			    fight();
 			}
 		}
 		
@@ -187,12 +188,12 @@ public class ShadowsEmbrace
 	{
 		if(monsterCounter == 0)
 		{
-		System.out.println("\n------------------------------------------------------------------\n");
-		System.out.println("You killed all the monster!");
-		System.out.println("The monster dropped a key to the dungeon!");
-		System.out.println("You obtaind a key!\n\n");
-		System.out.println("1: Continue to the dungeon");
-		System.out.println("\n------------------------------------------------------------------\n");
+		    System.out.println("\n------------------------------------------------------------------\n");
+		    System.out.println("You killed all the monster!");
+		    System.out.println("The monster dropped a key to the dungeon!");
+		    System.out.println("You obtaind a key!\n\n");
+		    System.out.println("1: Continue to the dungeon");
+		    System.out.println("\n------------------------------------------------------------------\n");
 		}
 		key = 1;
 		
@@ -210,19 +211,20 @@ public class ShadowsEmbrace
 	}
 	
 	
+	
 	public void firstBossFight()
 	{
-		//TO DO IF YOU HAVE ENTERED THE DUNGEON
+		
 	}
 	
 	public void secondBossFight()
 	{
-		//TO DO IF YOU HAVE SUCCESSFULLY DEFEATED THE FIRST BOSS
+		
 	}
 	
 	public void finalBossFight()
 	{
-		//TO DO IF YOU SUCCESSFULLY DEFEATED THE SECOND BOSS
+		
 	}
 	
 	
@@ -237,3 +239,4 @@ public class ShadowsEmbrace
 	}
 	
 }
+
