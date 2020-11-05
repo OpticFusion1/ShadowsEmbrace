@@ -2,21 +2,33 @@ import java.util.Scanner;
 import java.util.Random;
 public class ShadowsEmbrace 
 {
-	/*
-	AUTHORS NOTE:
-	This is only a prototype of the game not the final product/final storyline	
-	*/
 	
+	//SYSTEM VARIABLES
 	Random r = new Random();
 	Scanner s = new Scanner(System.in);
 	Scanner enterScanner = new Scanner(System.in);
+	
+	//PLAYER VARIABLES
 	int playerHP = 100;
+	int maxPlayerHP = r.nextInt(300);
 	String playerName;
+	int playerDamage = r.nextInt(25);
+	int maxDamage = r.nextInt(40);
 	int choice;
+	int role;
+	String playerWeapon;
+	
+	//OTHER GAME VARIABLES
 	int monsterHP = r.nextInt(25);
-	String monster[] = {"Skeleton", "Warrior" , "Archer"};
+	String monster[] = {"Skeleton", "Ghoul" , "Wraith" ,"Zombie" ,"Vampire" };
         int monsterRandomizer = r.nextInt(monster.length);
 	int monsterCounter = 2;
+	
+	
+	//ITEMS
+	
+	int healLeft = 3;
+	int reviveLeft;
 	int key;
 		
 	public static void main(String[] args) 
@@ -31,15 +43,77 @@ public class ShadowsEmbrace
 	
 	public void playerSetUp(){
 		
-	    System.out.println("------------------------------------------------"); 
-	    System.out.println("\nWelcome to Shadow's Embrace.");
-	    System.out.print("Your adventure begins here. Please enter a name: ");
+	        System.out.println("\t------------------------------------------------"); 
+	        System.out.println("\n\tWelcome to Shadow's Embrace.");
+	        System.out.print("\tYour adventure begins here. Please enter a name: ");
+		playerName = s.nextLine();
+		System.out.println("\t------------------------------------------------"); 
 		
-	    playerName = s.nextLine();
-	    System.out.println();
-	    System.out.println("Hello " + playerName + ", let's start the game!");	
+		System.out.print("\n\tHello " + playerName + ", let's pick a role!");
+		System.out.println("\n\t1. Warrior 	");
+		System.out.println("\t2. Mage");
+		System.out.println("\t3. Archer");
+		System.out.print("Select: ");
 		
+		role = s.nextInt();
 		
+		System.out.println("\t------------------------------------------------"); 
+		
+		//ROLES OR CLASSES TO SELECT
+		
+		if (role == 1)
+		{
+			maxPlayerHP = r.nextInt(140);
+			
+			
+			System.out.println("Class: Warrior.");
+			playerWeapon = "Long Sword";
+			playerDamage = playerDamage + maxDamage;
+			playerHP = playerHP + maxPlayerHP;
+			System.out.println("Player Weapon: " + playerWeapon);
+			System.out.println("Player HP: " + playerHP);
+			System.out.println("Possible Damage: " + playerDamage);
+			System.out.println("Health Potions Left: " + healLeft);
+			
+		
+		}
+		
+		else if (role == 2)
+		{
+			maxPlayerHP = r.nextInt(140);
+			maxDamage = r.nextInt(100);
+			
+			System.out.println("Class: Mage.");
+			playerWeapon = "Staff";
+			playerDamage = playerDamage + maxDamage;
+			playerHP = playerHP + maxPlayerHP;
+			System.out.println("Player Weapon: " + playerWeapon);
+			System.out.println("Player HP: " + playerHP);
+			System.out.print("Possible Damage: " + playerDamage);
+			System.out.println("Health Potions Left: " + healLeft);
+			
+		
+		}
+		
+		else if (role == 3)
+		{
+			maxPlayerHP = r.nextInt(200);
+			maxDamage = r.nextInt(75);
+			
+			System.out.println("Class: Archer.");
+			playerWeapon = "Bow";
+			playerDamage = playerDamage + maxDamage;
+			playerHP = playerHP + maxPlayerHP;
+			System.out.println("Player Weapon: " + playerWeapon);
+			System.out.println("Player HP: " + playerHP);
+			System.out.print("Possible Damage: " + playerDamage);
+			System.out.println("Health Potions Left: " + healLeft);
+		}
+		
+		else
+		{
+			System.out.println("Invalid Command");
+		}
 	}	
 	
 	public void startUp(){
@@ -50,8 +124,8 @@ public class ShadowsEmbrace
 		System.out.println("You need to defeat 3 boss in order for you to sucessfully retrieve her");
 		System.out.println("What do you want to do?");
 		System.out.println("");
-		System.out.println("1: Continue Walking");
-		System.out.println("2: Exit Game");
+		System.out.println("[1]: Continue Walking");
+		System.out.println("[2]: Exit Game");
 		System.out.println("\n------------------------------------------------------------------\n");
 		System.out.print("Select: ");
 		choice = s.nextInt();
@@ -87,8 +161,8 @@ public class ShadowsEmbrace
 			System.out.println("\n------------------------------------------------------------------\n");
 			System.out.println("You encountered a " + monster[monsterRandomizer] + "!\n");
 			System.out.println("Choose:");
-			System.out.println("1: Fight");
-			System.out.println("2: Run");
+			System.out.println("[1:] Fight");
+			System.out.println("[2:] Run");
 			System.out.println("\n------------------------------------------------------------------\n");
 			System.out.print("Select: ");
 			choice = s.nextInt();
@@ -100,7 +174,7 @@ public class ShadowsEmbrace
 			
 			else if (choice == 2)
 			{
-			    System.out.println("You can't run!" + monster[monsterRandomizer] + " killed you");
+			System.out.println("You can't run!" + monster[monsterRandomizer] + " killed you");
 			}
 		}
 	}
@@ -113,34 +187,34 @@ public class ShadowsEmbrace
 		System.out.println("\t>Your HP: "+ playerHP);
 		System.out.println("\t>Monster HP: " + monsterHP);
 		System.out.println("Choose:");
-		System.out.println("\n1: Attack");
-		System.out.println("2: Run");
+		System.out.println("\n[1:] Attack");
+		System.out.println("[2:] Run");
 		System.out.println("\n------------------------------------------------------------------\n");
 		System.out.print("Select: ");
 		choice = s.nextInt();
 		
 		if(choice==1)
 		{
-		    attack();
+			attack();
 		}
 		else if(choice==2)
 		{
-		    System.out.println("You can't run!" + monster[monsterRandomizer] + " killed you");
+			System.out.println("You can't run!" + monster[monsterRandomizer] + " killed you");
 		}
 		else
 		{
-		    fight();
+			fight();
 		}
 		if (monsterHP <= 0)
 		{
-		    monsterHP = r.nextInt(25);
+			monsterHP = r.nextInt(25);
 		}
 	}
 	
 	public void attack()
 	{
-		int playerDamage = r.nextInt(25);
-		//int newMonsterHP; FOR TESTING PURPOSES
+		//int playerDamage = r.nextInt(25);
+		
 		System.out.println("");
 		System.out.println(monsterCounter + " enemies left!");
 		System.out.println("You attacked the monster and gave " + playerDamage + " damage!");
@@ -152,23 +226,23 @@ public class ShadowsEmbrace
 		
 		if(monsterHP<1)
 		{
-		    win(); 
+			win(); 
 		} 
 		
 		else if(monsterHP > 0)
 		{
-		    fight();
+			fight();
 			
 			
 			
 			if(playerHP<1)
 			{ 
-			    dead(); 
+				dead(); 
 			} 
 			
 			else if(playerHP>0)
 			{
-			    fight();
+				fight();
 			}
 		}
 		
@@ -188,12 +262,12 @@ public class ShadowsEmbrace
 	{
 		if(monsterCounter == 0)
 		{
-		    System.out.println("\n------------------------------------------------------------------\n");
-		    System.out.println("You killed all the monster!");
-		    System.out.println("The monster dropped a key to the dungeon!");
-		    System.out.println("You obtaind a key!\n\n");
-		    System.out.println("1: Continue to the dungeon");
-		    System.out.println("\n------------------------------------------------------------------\n");
+		System.out.println("\n------------------------------------------------------------------\n");
+		System.out.println("You killed all the monster!");
+		System.out.println("The monster dropped a key to the dungeon!");
+		System.out.println("You obtaind a key!\n\n");
+		System.out.println("1: Continue to the dungeon");
+		System.out.println("\n------------------------------------------------------------------\n");
 		}
 		key = 1;
 		
