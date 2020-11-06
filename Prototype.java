@@ -20,8 +20,8 @@ public class ShadowsEmbrace
 	
 	//OTHER GAME VARIABLES
 	int monsterHP = r.nextInt(25);
-	String monster[] = {"Skeleton", "Ghoul" , "Wraith" ,"Zombie" ,"Vampire" };
-        int monsterRandomizer = r.nextInt(monster.length);
+	String monster[] = {"Skeleton", "Ghoul", "Wraith", "Zombie","Vampire",};
+        String monsterRandomizer = monster[r.nextInt(monster.length)];
 	int monsterCounter = 2;
 	
 	
@@ -134,32 +134,28 @@ public class ShadowsEmbrace
 		{
 			monsterFight();		
 		}
-			
-		
+
 		else if(choice==2)
 		{
 			System.out.println("You left the game.");
 		}
 		
-		
 		else
 		{
+			System.out.println("Invalid Command");
 			startUp();
 		}
 	}
 	
 	
-	
-	
-	
-	
+
 	public void monsterFight()
 	{
 		while (monsterCounter > 0)
 		{
 			monsterCounter--;
 			System.out.println("\n------------------------------------------------------------------\n");
-			System.out.println("You encountered a " + monster[monsterRandomizer] + "!\n");
+			System.out.println("You encountered a " + monsterRandomizer + "!\n");
 			System.out.println("Choose:");
 			System.out.println("[1:] Fight");
 			System.out.println("[2:] Run");
@@ -174,15 +170,16 @@ public class ShadowsEmbrace
 			
 			else if (choice == 2)
 			{
-			System.out.println("You can't run!" + monster[monsterRandomizer] + " killed you");
+			System.out.println("You can't run!" + monsterRandomizer + " killed you");
 			}
 		}
 	}
 	
 	
-	
 	public void fight()
 	{
+		monsterRandomizer = monster[r.nextInt(monster.length)];
+		
 		System.out.println("\n------------------------------------------------------------------\n");
 		System.out.println("\t>Your HP: "+ playerHP);
 		System.out.println("\t>Monster HP: " + monsterHP);
@@ -197,14 +194,17 @@ public class ShadowsEmbrace
 		{
 			attack();
 		}
+		
 		else if(choice==2)
 		{
-			System.out.println("You can't run!" + monster[monsterRandomizer] + " killed you");
+			System.out.println("You can't run!" + monsterRandomizer + " killed you");
 		}
+		
 		else
 		{
 			fight();
 		}
+		
 		if (monsterHP <= 0)
 		{
 			monsterHP = r.nextInt(25);
@@ -216,15 +216,15 @@ public class ShadowsEmbrace
 		//int playerDamage = r.nextInt(25);
 		
 		System.out.println("");
-		System.out.println(monsterCounter + " enemies left!");
-		System.out.println("You attacked the monster and gave " + playerDamage + " damage!");
+		System.out.println("There are " + monsterCounter + " enemies left!");
+		System.out.println("You attacked the monster and dealt " + playerDamage + " damage!");
 		
 		monsterHP = monsterHP - playerDamage;
 		
 		System.out.println("Monster HP: " + monsterHP);
 		System.out.println("Please enter (1) to continue");
 		
-		if(monsterHP<1)
+		if(monsterHP<=0)
 		{
 			win(); 
 		} 
@@ -233,9 +233,7 @@ public class ShadowsEmbrace
 		{
 			fight();
 			
-			
-			
-			if(playerHP<1)
+			if(playerHP<=0)
 			{ 
 				dead(); 
 			} 
@@ -245,8 +243,10 @@ public class ShadowsEmbrace
 				fight();
 			}
 		}
-		
-		
+		else if(playerHP<=0)
+			{ 
+				dead(); 
+			} 
 	}
 	
 	public void dead()
@@ -268,6 +268,7 @@ public class ShadowsEmbrace
 		System.out.println("You obtaind a key!\n\n");
 		System.out.println("1: Continue to the dungeon");
 		System.out.println("\n------------------------------------------------------------------\n");
+		String monsterRandomizer = monster[r.nextInt(monster.length)];
 		}
 		key = 1;
 		
