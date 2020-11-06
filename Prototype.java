@@ -13,7 +13,7 @@ public class ShadowsEmbrace
 	int maxPlayerHP = r.nextInt(300);
 	String playerName;
 	int playerDamage = r.nextInt(25);
-	int maxDamage = r.nextInt(40);
+	int maxPlayerDamage;
 	int choice;
 	int role;
 	String playerWeapon;
@@ -22,13 +22,13 @@ public class ShadowsEmbrace
 	int monsterHP = r.nextInt(25);
 	String monster[] = {"Skeleton", "Ghoul", "Wraith", "Zombie","Vampire",};
         String monsterRandomizer = monster[r.nextInt(monster.length)];
-	int monsterCounter = 2;
+	int monsterCounter = 4;
 	
 	
 	//ITEMS
 	
 	int healLeft = 3;
-	int reviveLeft;
+	int revive; // Used to finish the game
 	int key;
 		
 	public static void main(String[] args) 
@@ -63,13 +63,15 @@ public class ShadowsEmbrace
 		
 		if (role == 1)
 		{
-			maxPlayerHP = r.nextInt(140);
-			
+			maxPlayerHP = 300;
+			maxPlayerDamage = 40;
 			
 			System.out.println("Class: Warrior.");
 			playerWeapon = "Long Sword";
-			playerDamage = playerDamage + maxDamage;
-			playerHP = playerHP + maxPlayerHP;
+			playerHP = playerHP + r.nextInt(maxPlayerHP);
+			playerDamage = playerDamage + r.nextInt(maxPlayerDamage);
+			
+			
 			System.out.println("Player Weapon: " + playerWeapon);
 			System.out.println("Player HP: " + playerHP);
 			System.out.println("Possible Damage: " + playerDamage);
@@ -81,15 +83,15 @@ public class ShadowsEmbrace
 		else if (role == 2)
 		{
 			maxPlayerHP = r.nextInt(140);
-			maxDamage = r.nextInt(100);
+			maxPlayerDamage = r.nextInt(100);
 			
 			System.out.println("Class: Mage.");
 			playerWeapon = "Staff";
-			playerDamage = playerDamage + maxDamage;
+			playerDamage = playerDamage + maxPlayerDamage;
 			playerHP = playerHP + maxPlayerHP;
 			System.out.println("Player Weapon: " + playerWeapon);
 			System.out.println("Player HP: " + playerHP);
-			System.out.print("Possible Damage: " + playerDamage);
+			System.out.println("Possible Damage: " + playerDamage);
 			System.out.println("Health Potions Left: " + healLeft);
 			
 		
@@ -98,15 +100,15 @@ public class ShadowsEmbrace
 		else if (role == 3)
 		{
 			maxPlayerHP = r.nextInt(200);
-			maxDamage = r.nextInt(75);
+			maxPlayerDamage = r.nextInt(75);
 			
 			System.out.println("Class: Archer.");
 			playerWeapon = "Bow";
-			playerDamage = playerDamage + maxDamage;
+			playerDamage = playerDamage + maxPlayerDamage;
 			playerHP = playerHP + maxPlayerHP;
 			System.out.println("Player Weapon: " + playerWeapon);
 			System.out.println("Player HP: " + playerHP);
-			System.out.print("Possible Damage: " + playerDamage);
+			System.out.println("Possible Damage: " + playerDamage);
 			System.out.println("Health Potions Left: " + healLeft);
 		}
 		
@@ -132,7 +134,7 @@ public class ShadowsEmbrace
 		
 		if(choice==1)
 		{
-			monsterFight();		
+			firstMonsterWave();		
 		}
 
 		else if(choice==2)
@@ -149,7 +151,7 @@ public class ShadowsEmbrace
 	
 	
 
-	public void monsterFight()
+	public void firstMonsterWave()
 	{
 		while (monsterCounter > 0)
 		{
@@ -158,7 +160,6 @@ public class ShadowsEmbrace
 			System.out.println("You encountered a " + monsterRandomizer + "!\n");
 			System.out.println("Choose:");
 			System.out.println("[1:] Fight");
-			System.out.println("[2:] Run");
 			System.out.println("\n------------------------------------------------------------------\n");
 			System.out.print("Select: ");
 			choice = s.nextInt();
@@ -168,9 +169,9 @@ public class ShadowsEmbrace
 				fight();
 			}
 			
-			else if (choice == 2)
+			else 
 			{
-			System.out.println("You can't run!" + monsterRandomizer + " killed you");
+				firstMonsterWave();
 			}
 		}
 	}
@@ -185,7 +186,7 @@ public class ShadowsEmbrace
 		System.out.println("\t>Monster HP: " + monsterHP);
 		System.out.println("Choose:");
 		System.out.println("\n[1:] Attack");
-		System.out.println("[2:] Run");
+		System.out.println("[2:] Use an item.");
 		System.out.println("\n------------------------------------------------------------------\n");
 		System.out.print("Select: ");
 		choice = s.nextInt();
@@ -197,7 +198,12 @@ public class ShadowsEmbrace
 		
 		else if(choice==2)
 		{
-			System.out.println("You can't run!" + monsterRandomizer + " killed you");
+			if (healLeft == 0)
+			{
+				System.out.println("You have used all of your heals!");
+				fight();
+			}
+			heal();
 		}
 		
 		else
@@ -213,15 +219,18 @@ public class ShadowsEmbrace
 	
 	public void attack()
 	{
-		//int playerDamage = r.nextInt(25);
+		int monsterDamage =  r.nextInt(25);
+		playerHP = playerHP - monsterDamage;
+		
 		
 		System.out.println("");
 		System.out.println("There are " + monsterCounter + " enemies left!");
 		System.out.println("You attacked the monster and dealt " + playerDamage + " damage!");
-		
+		System.out.println("The monster attacked you for " + monsterDamage);
 		monsterHP = monsterHP - playerDamage;
 		
-		System.out.println("Monster HP: " + monsterHP);
+		System.out.println("\nMonster HP: " + monsterHP);
+		System.out.println("Your HP: " + playerHP);
 		System.out.println("Please enter (1) to continue");
 		
 		if(monsterHP<=0)
@@ -265,18 +274,19 @@ public class ShadowsEmbrace
 		System.out.println("\n------------------------------------------------------------------\n");
 		System.out.println("You killed all the monster!");
 		System.out.println("The monster dropped a key to the dungeon!");
-		System.out.println("You obtaind a key!\n\n");
+		System.out.println("You obtained a key!\n\n");
 		System.out.println("1: Continue to the dungeon");
 		System.out.println("\n------------------------------------------------------------------\n");
 		String monsterRandomizer = monster[r.nextInt(monster.length)];
 		}
 		key = 1;
 		
+		System.out.print("Select: ");
+		
 		choice = s.nextInt();
 		if(choice==1)
 		{
-			//SOON 
-			//TO ENTER OR TO GO TO DUNGEON TO FIGHT THE BOSS
+			firstBossFight();
 		}
 		else
 		{
@@ -285,7 +295,15 @@ public class ShadowsEmbrace
 		
 	}
 	
-	
+	public void heal()
+	{
+		healLeft--;
+		playerHP = playerHP + 50;
+		System.out.println("You used heal. You have " + healLeft + " left");
+		System.out.println("Current HP is " + playerHP);
+		fight();
+		
+	}
 	
 	public void firstBossFight()
 	{
@@ -314,4 +332,4 @@ public class ShadowsEmbrace
 	}
 	
 }
-
+	
