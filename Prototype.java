@@ -19,11 +19,12 @@ public class ShadowsEmbrace
 	String playerWeapon;
 	
 	//OTHER GAME VARIABLES
-	int monsterHP = r.nextInt(25);
+	int monsterHP = r.nextInt(30);
 	String monster[] = {"Skeleton", "Ghoul", "Wraith", "Zombie","Vampire",};
-        String monsterRandomizer = monster[r.nextInt(monster.length)];
-	int monsterCounter = 4;
-	
+    String monsterRandomizer = monster[r.nextInt(monster.length)];
+	int monsterCounter = 1;
+	int abbadonDamage = 40;
+	int abbadonHP = 100;
 	
 	//ITEMS
 	
@@ -43,9 +44,9 @@ public class ShadowsEmbrace
 	
 	public void playerSetUp(){
 		
-	        System.out.println("\t------------------------------------------------"); 
-	        System.out.println("\n\tWelcome to Shadow's Embrace.");
-	        System.out.print("\tYour adventure begins here. Please enter a name: ");
+	    System.out.println("\t------------------------------------------------"); 
+	    System.out.println("\n\tWelcome to Shadow's Embrace.");
+	    System.out.print("\tYour adventure begins here. Please enter a name: ");
 		playerName = s.nextLine();
 		System.out.println("\t------------------------------------------------"); 
 		
@@ -211,9 +212,10 @@ public class ShadowsEmbrace
 			fight();
 		}
 		
-		if (monsterHP <= 0)
+		//USED SO THAT THE MONSTER HP WON'T BE NEGATIVE
+		if (monsterHP <= 0) 
 		{
-			monsterHP = r.nextInt(25);
+			monsterHP = r.nextInt(60);
 		}
 	}
 	
@@ -233,7 +235,7 @@ public class ShadowsEmbrace
 		System.out.println("Your HP: " + playerHP);
 		System.out.println("Please enter (1) to continue");
 		
-		if(monsterHP<=0)
+		if(monsterCounter<=0 && monsterHP <= 0)
 		{
 			win(); 
 		} 
@@ -242,7 +244,7 @@ public class ShadowsEmbrace
 		{
 			fight();
 			
-			if(playerHP<=0)
+			if(playerHP <= 0)
 			{ 
 				dead(); 
 			} 
@@ -297,18 +299,46 @@ public class ShadowsEmbrace
 	
 	public void heal()
 	{
+		if (healLeft > 0)
+		{
 		healLeft--;
 		playerHP = playerHP + 50;
 		System.out.println("You used heal. You have " + healLeft + " left");
 		System.out.println("Current HP is " + playerHP);
 		fight();
+		}
+		else 
+		{
+			System.out.println("You have used all your heal!");
+			
+		}
 		
 	}
 	
 	public void firstBossFight()
 	{
+			
 		
+			System.out.println("\nYou encountered the first boss Abbadon");
+			System.out.println("\n------------------------------------------------------------------\n");
+			System.out.println("\t >BOSS FIGHT!");
+			System.out.println("\t>Your HP: "+ playerHP);
+			System.out.println("\t>Abbadon's HP: " + abbadonHP);
+			System.out.println("Choose:");
+			System.out.println("[1.] Continue");
+			System.out.println("[2.] Heal");
+			System.out.println("\n------------------------------------------------------------------\n");
+			System.out.print("Select: ");
+			choice = s.nextInt();	
 	}
+	
+	
+	
+		
+		
+	
+	
+	
 	
 	public void secondBossFight()
 	{
@@ -332,4 +362,3 @@ public class ShadowsEmbrace
 	}
 	
 }
-	
