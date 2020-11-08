@@ -22,7 +22,7 @@ public class ShadowsEmbrace
 	int monsterHP = r.nextInt(30);
 	String monster[] = {"Skeleton", "Ghoul", "Wraith", "Zombie","Vampire",};
         String monsterRandomizer = monster[r.nextInt(monster.length)];
-	int monsterCounter = 1;
+	int monsterCounter = 5;
 	int abbadonDamage = 40;
 	int abbadonHP = 100;
 	
