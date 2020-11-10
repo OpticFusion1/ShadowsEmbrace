@@ -6,7 +6,6 @@ public class ShadowsEmbrace
 	//SYSTEM VARIABLES
 	Random r = new Random();
 	Scanner s = new Scanner(System.in);
-	Scanner enterScanner = new Scanner(System.in);
 	
 	//PLAYER VARIABLES
 	int playerHP = 100;
@@ -22,7 +21,7 @@ public class ShadowsEmbrace
 	int monsterHP = r.nextInt(30);
 	String monster[] = {"Skeleton", "Ghoul", "Wraith", "Zombie","Vampire",};
         String monsterRandomizer = monster[r.nextInt(monster.length)];
-	int monsterCounter = 5;
+	int monsterCounter = 3;
 	int abbadonDamage = 40;
 	int abbadonHP = 100;
 	
@@ -44,9 +43,9 @@ public class ShadowsEmbrace
 	
 	public void playerSetUp(){
 		
-	    System.out.println("\t------------------------------------------------"); 
-	    System.out.println("\n\tWelcome to Shadow's Embrace.");
-	    System.out.print("\tYour adventure begins here. Please enter a name: ");
+	        System.out.println("\t------------------------------------------------"); 
+	        System.out.println("\n\tWelcome to Shadow's Embrace.");
+	        System.out.print("\tYour adventure begins here. Please enter a name: ");
 		playerName = s.nextLine();
 		System.out.println("\t------------------------------------------------"); 
 		
@@ -161,10 +160,10 @@ public class ShadowsEmbrace
 			System.out.println("You encountered a " + monsterRandomizer + "!\n");
 			System.out.println("Choose:");
 			System.out.println("[1:] Fight");
-			System.out.println("\n------------------------------------------------------------------\n");
 			System.out.print("Select: ");
 			choice = s.nextInt();
-		
+			System.out.println("\n------------------------------------------------------------------\n");
+			
 			if(choice==1)
 			{
 				fight();
@@ -310,6 +309,7 @@ public class ShadowsEmbrace
 		else 
 		{
 			System.out.println("You have used all your heal!");
+			fight();
 			
 		}
 		
@@ -318,24 +318,72 @@ public class ShadowsEmbrace
 	public void firstBossFight()
 	{
 			
-		
+		if(abbadonHP > 0)
+		{
 			System.out.println("\nYou encountered the first boss Abbadon");
 			System.out.println("\n------------------------------------------------------------------\n");
 			System.out.println("\t >BOSS FIGHT!");
 			System.out.println("\t>Your HP: "+ playerHP);
 			System.out.println("\t>Abbadon's HP: " + abbadonHP);
 			System.out.println("Choose:");
-			System.out.println("[1.] Continue");
+			System.out.println("[1.] Fight");
 			System.out.println("[2.] Heal");
 			System.out.println("\n------------------------------------------------------------------\n");
 			System.out.print("Select: ");
 			choice = s.nextInt();	
+			
+			
+			if (choice == 1)
+			{
+				bossAttack();
+			}
+			
+			else if (choice == 2)
+			{
+				healLeft--;
+				playerHP = playerHP + 50;
+				System.out.println("You have used your heal potion! Your HP is " + playerHP);
+				System.out.println("Heals Left: " + healLeft);
+				firstBossFight();
+			}
+			
+			else 
+			{
+				System.out.println("Invalid Command!");
+				firstBossFight();
+			}
+		}
+		
+		
+		else if (abbadonHP <= 0)
+		{
+			healLeft = healLeft +3;
+			System.out.println("\nYou killed Abbadon! You recieved additional 3 heal potions!");
+			ending();
+		}
+	
 	}
 	
 	
 	
 		
-		
+		public void bossAttack()
+		{
+			if (abbadonHP > 0)
+			{
+			abbadonHP = abbadonHP - playerDamage;
+			playerHP = playerHP - abbadonDamage;
+			
+			
+			System.out.println("\nAbbadon attacked you for " + abbadonDamage + " damage!");
+			System.out.println("You attacked Abbadon for " + playerDamage + " damage!");
+			
+
+			firstBossFight();
+			}
+			
+			
+		}
 	
 	
 	
