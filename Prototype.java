@@ -18,20 +18,14 @@ public class ShadowsEmbrace
 	String playerWeapon;
 	
 	//OTHER GAME VARIABLES
-	int monsterHP = r.nextInt(30);
+	int monsterHP;
 	String monster[] = {"Skeleton", "Ghoul", "Wraith", "Zombie","Vampire",};
         String monsterRandomizer = monster[r.nextInt(monster.length)];
-	int monsterCounter = 4;
+	int monsterCounter = 3;
 	int abbadonDamage = 40;
 	int abbadonHP = 100;
 	
-	int asmodeusHP;
-	int asmodeusDamage;
-	
-	
-	
-	
-	
+	int asmodeusHP = 150;
 	
 	
 	//ITEMS
@@ -189,10 +183,96 @@ public class ShadowsEmbrace
 	public void fight()
 	{
 		monsterRandomizer = monster[r.nextInt(monster.length)];
+		//GHOUL STATS
+		if (monsterRandomizer.equals("Ghoul"))
+		{
+			int monsterHP = r.nextInt(50);
+			if (monsterHP <= 30)
+			{
+				monsterHP = 30;
+			}
+			
+			int monsterDamage = r.nextInt(30);
+			if (monsterDamage <= 20)
+			{
+				monsterDamage = 20;
+			}
+			
+			System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
+		}
+		//SKELETON STATS
+		else if (monsterRandomizer.equals("Skeleton"))
+		{
+			int monsterHP = r.nextInt(55);
+			if (monsterHP <= 25)
+			{
+				monsterHP = 25;
+			}
+			
+			int monsterDamage = r.nextInt(50);
+			if (monsterDamage <= 40)
+			{
+				monsterDamage = 40;
+			}
+			
+			System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
+		}
+		//WRAITH STATS
+		else if (monsterRandomizer.equals("Wraith"))
+		{
+			int monsterHP = r.nextInt(50);
+			if (monsterHP <= 35)
+			{
+				monsterHP = 35;
+			}
+			
+			int monsterDamage = r.nextInt(40);
+			if (monsterDamage <= 35)
+			{
+				monsterDamage = 35;
+			}
+			
+			System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
+		}
+		//ZOMBIE STATS
+		else if (monsterRandomizer.equals("Zombie"))
+		{
+			int monsterHP = r.nextInt(55);
+			if (monsterHP <= 35)
+			{
+				monsterHP = 35;
+			}
+			
+			int monsterDamage = r.nextInt(35);
+			if (monsterDamage <= 25)
+			{
+				monsterDamage = 25;
+			}
+			
+			System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
+		}
+		//VAMPIRE STATS
+		else if (monsterRandomizer.equals("Vampire"))
+		{
+			int monsterHP = r.nextInt(40);
+			if (monsterHP <= 10)
+			{
+				monsterHP = 10;
+			}
+			
+			int monsterDamage = r.nextInt(60);
+			if (monsterDamage <= 50)
+			{
+				monsterDamage = 50;
+			}
+			
+			System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
+		}
 		
 		System.out.println("\n------------------------------------------------------------------\n");
 		System.out.println("\t>Your HP: "+ playerHP);
-		System.out.println("\t>Monster HP: " + monsterHP);
+
+		
 		System.out.println("Choose:");
 		System.out.println("\n[1:] Attack");
 		System.out.println("[2:] Use an item.");
@@ -387,7 +467,7 @@ public class ShadowsEmbrace
 			System.out.println("\nAbbadon attacked you for " + abbadonDamage + " damage!");
 			System.out.println("You attacked Abbadon for " + playerDamage + " damage!");
 			
-
+			
 			firstBossFight();
 			}
 			
