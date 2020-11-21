@@ -19,6 +19,8 @@ public class ShadowsEmbrace extends SimpleGame {
 
   @Override
   public void startGame() {
+    init();
+    setRunning(true);
     playerSetup();
 //    startUp();
   }
