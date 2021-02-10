@@ -1,9 +1,11 @@
 package optic_fusion1.shadowsembrace.component.enemy;
 
+import optic_fusion1.engine.game.Game;
+
 public class Ghoul extends BaseEnemy {
 
-  public Ghoul() {
-    super("Ghoul", 30, 20, 50, 30);
+  public Ghoul(Game game) {
+    super(30, 20, 50, 30, "Ghoul", game);
   }
 
 }

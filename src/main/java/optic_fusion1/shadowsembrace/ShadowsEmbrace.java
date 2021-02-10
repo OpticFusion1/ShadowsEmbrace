@@ -33,7 +33,7 @@ public class ShadowsEmbrace extends SimpleGame {
     System.out.println("\t------------------------------------------------");
     System.out.println("\n\tWelcome to Shadow's Embrace.");
     System.out.println("\tYour adventure begins here. Please enter a name: ");
-    player = new Player(getScanner().nextLine());
+    player = new Player(getScanner().nextLine(), this);
     System.out.println("\t------------------------------------------------");
     System.out.println("\n\tHello " + player.getName() + ", let's pick a role!");
     System.out.println("\n\t1. Warrior");

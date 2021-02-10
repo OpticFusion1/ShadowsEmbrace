@@ -2,6 +2,7 @@ package optic_fusion1.shadowsembrace.component;
 
 import java.util.Random;
 import optic_fusion1.engine.component.Component;
+import optic_fusion1.engine.game.Game;
 
 public class Player extends Component {
 
@@ -14,8 +15,8 @@ public class Player extends Component {
   private int role;
   private String playerWeapon;
 
-  public Player(String name) {
-    super(name);
+  public Player(String name, Game game) {
+    super(name, game);
   }
 
   public Random getR() {
@@ -80,6 +81,14 @@ public class Player extends Component {
 
   public void setPlayerWeapon(String playerWeapon) {
     this.playerWeapon = playerWeapon;
+  }
+
+  @Override
+  public void tick() {
+  }
+
+  @Override
+  public void render() {
   }
 
 }

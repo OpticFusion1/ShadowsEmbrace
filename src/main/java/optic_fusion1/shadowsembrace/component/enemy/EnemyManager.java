@@ -2,6 +2,7 @@ package optic_fusion1.shadowsembrace.component.enemy;
 
 import java.util.HashMap;
 import java.util.Random;
+import optic_fusion1.engine.game.Game;
 
 public class EnemyManager {
 
@@ -9,12 +10,12 @@ public class EnemyManager {
   private static final HashMap<String, BaseEnemy> ENEMIES = new HashMap<>();
   private BaseEnemy[] ENEMIES_ARRAY;
 
-  public void registerEnemies() {
-    registerEnemy(new Ghoul());
-    registerEnemy(new Skeleton());
-    registerEnemy(new Vampire());
-    registerEnemy(new Wraith());
-    registerEnemy(new Zombie());
+  public void registerEnemies(Game game) {
+    registerEnemy(new Ghoul(game));
+    registerEnemy(new Skeleton(game));
+    registerEnemy(new Vampire(game));
+    registerEnemy(new Wraith(game));
+    registerEnemy(new Zombie(game));
     ENEMIES_ARRAY = (BaseEnemy[]) ENEMIES.values().toArray();
   }
 

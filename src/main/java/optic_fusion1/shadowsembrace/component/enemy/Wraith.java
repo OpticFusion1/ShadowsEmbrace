@@ -1,9 +1,11 @@
 package optic_fusion1.shadowsembrace.component.enemy;
 
+import optic_fusion1.engine.game.Game;
+
 public class Wraith extends BaseEnemy {
 
-  public Wraith() {
-    super("Wraith", 40, 35, 50, 35);
+  public Wraith(Game game) {
+    super(40, 35, 50, 35, "Wraith", game);
   }
 
 }

@@ -2,6 +2,7 @@ package optic_fusion1.shadowsembrace.component.enemy;
 
 import java.util.Random;
 import optic_fusion1.engine.component.Component;
+import optic_fusion1.engine.game.Game;
 
 public class BaseEnemy extends Component {
 
@@ -11,10 +12,12 @@ public class BaseEnemy extends Component {
   private int maxHP;
   private int maxDamage;
 
-  public BaseEnemy(String name, int damageChance, int maxDamage, int hpChance, int maxHP) {
-    super(name);
+  public BaseEnemy(int damageChance, int hpChance, int maxHP, int maxDamage, String name, Game game) {
+    super(name, game);
     this.damageChance = damageChance;
     this.hpChance = hpChance;
+    this.maxHP = maxHP;
+    this.maxDamage = maxDamage;
   }
 
   public int getHP() {
@@ -31,6 +34,14 @@ public class BaseEnemy extends Component {
       monsterDamage = maxDamage;
     }
     return monsterDamage;
+  }
+
+  @Override
+  public void tick() {
+  }
+
+  @Override
+  public void render() {
   }
 
 }
